@@ -13,8 +13,7 @@ const fi = (function() {
 
     map: function(collection, callback) {
       const array = collection instanceof Array ? collection.slice() : Object.values(collection);
-      const x = 3;
-      return callback(array, x)
+      console.log(array)
     },
 
     reduce: function() {
