@@ -8,17 +8,32 @@ const fi = (function() {
       const array = collection instanceof Array ? collection.slice() : Object.values(collection);
       for (let i = 0; i < array.length; i++) 
         callback(array[i]);
-        return collection;
+        return collection; 
     },
+
+
 
     map: function(collection, callback) {
       const array = collection instanceof Array ? collection.slice() : Object.values(collection);
-      console.log(array)
+      const newArr = [];
+      for (let i = 0; i < array.length; i++) {
+        newArr.push(callback(array[i]))
+      }
+        return newArr;
     },
 
-    reduce: function() {
 
+
+
+    reduce: function(collection, callback, acc) {
+      const values = collection.values();
+      for (let i = 0; i < values.length; i++) {
+        console.log(values[i])
+      }
     },
+
+
+
 
     functions: function() {
 
