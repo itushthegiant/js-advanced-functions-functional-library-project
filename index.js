@@ -25,19 +25,56 @@ const fi = (function() {
 
 
 
-    reduce: function(collection, callback, acc) {
-      const values = collection.values();
-      for (let i = 0; i < values.length; i++) {
-        console.log(values[i])
+    reduce: function (array = [], callback = () => {}, acc) {
+      let collection = array.slice(0)
+      if (!acc) {
+        acc = collection[0]
+        collection = collection.slice(1)
+      }
+      for(let i = 0; i<collection.length; i++) {
+      acc = callback(acc, collection[i], collection)
+      }
+      return acc
+    },
+
+
+
+    find: function (collection, predicate) {
+      const collector = collection instanceof Array ? collection.slice() : Object.values(collection);
+      for (let i = 0; i < collector.length; i++) {
+        const finder = predicate(collector[i])
+        if (finder) {
+          return collector[i];
+        }
       }
     },
 
 
 
+    filter: function (collection, predicate) {
+      const array = []
+      const collector = collection instanceof Array ? collection.slice() : Object.values(collection);
+      collector.forEach(x => {
+        const finder = predicate(x) 
+        if (finder) {
+          array.push(x)
+        }
+      })
+      return array
+    },
+
+
+    size: function(collection) {
+      const collector = collection instanceof Array ? collection.slice() : Object.values(collection);
+      return collector.length;
+    },
+
+
 
     functions: function() {
-
     },
+
+    
 
 
   }
